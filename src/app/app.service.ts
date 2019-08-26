@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,13 @@ export class AppService {
   setUsername(name: string): void {
     this.username = name;
   }
-
-  addMember(memberForm) {
+  // Add Member to JSON Server, using REST POST Method.
+  addMember(member: any): Observable<any> {
+      return this.http.post<any>(`${this.api}/members`, member);
   }
-
+  // Return teams JSON Array
   getTeams() {
+    return this.http.get(`${this.api}/teams`).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

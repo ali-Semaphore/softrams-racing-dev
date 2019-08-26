@@ -27,12 +27,25 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder, private appService: AppService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.appService.getTeams().subscribe(teams => (this.teams = teams));
+    this.memberForm = this.fb.group({
+      id:'',
+      firstName: ['', Validators.required],
+      lastName:  ['', Validators.required],
+      jobTitle:  ['', Validators.required],
+      team:  ['', Validators.required],
+      status: ['Active', Validators.required]
+    });
+  }
 
   ngOnChanges() {}
 
   // TODO: Add member to members
-  onSubmit(form: FormGroup) {
-    this.memberModel = form.value;
+  onSubmit() {
+    this.appService.addMember(this.memberForm.value)
+        .subscribe(data => {
+            this.router.navigate(['members']);
+        });
   }
 }
