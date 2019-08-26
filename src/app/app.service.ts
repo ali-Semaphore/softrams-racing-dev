@@ -35,9 +35,17 @@ export class AppService {
   addMember(member: any): Observable<any> {
       return this.http.post<any>(`${this.api}/members`, member);
   }
+  // update a Member by id, using REST PUT Method.
+  updateMember(member: any): Observable<any> {
+    return this.http.put<any>(`${this.api}/members/` + member.id, member);
+  }
   // Return teams JSON Array
   getTeams() {
     return this.http.get(`${this.api}/teams`).pipe(catchError(this.handleError));
+  }
+  // Returns  members by id
+  getMembersById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.api}/members/` + id);
   }
 
   private handleError(error: HttpErrorResponse) {

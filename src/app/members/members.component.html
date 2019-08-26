@@ -9,6 +9,7 @@
         <th>Job Title</th>
         <th>Racing Team</th>
         <th>Status</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td>{{member?.jobTitle}}</td>
         <td>{{member?.team}}</td>
         <td>{{member?.status}}</td>
+        <td><a id="editMemberButton" class="btn btn-success " [routerLink]="['/members/',member?.id]">Edit</a></td>
       </tr>
     </tbody>
   </table>

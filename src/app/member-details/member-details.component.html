@@ -36,7 +36,7 @@
           />
         </div>
         <!--We may have to make a service call to get this list-->
-        <select id="team" class="col-md-6 custom-select" formControlName="team" >
+        <select id="team" formControlName="team" class="col-md-6 custom-select">
           <option *ngFor="let team of teams" [value]="team.teamName">{{ team.teamName }}</option>
         </select>
       </div>
