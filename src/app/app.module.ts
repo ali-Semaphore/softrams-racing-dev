@@ -23,7 +23,7 @@ const ROUTES = [
   },
   {
     path: 'members',
-    component: MembersComponent
+    redirectTo: 'login'
   },
   {
     path: 'login',
@@ -42,6 +42,7 @@ const ROUTES = [
     HttpClientModule
   ],
   providers: [AppService, HttpClient],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MembersComponent, MemberDetailsComponent]
 })
 export class AppModule {}
