@@ -27,7 +27,7 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
   teams = [];
   id=null;
 
-  constructor(private fb: FormBuilder, private appService: AppService, private router: Router, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, public appService: AppService, private router: Router, private route: ActivatedRoute) {
     try{  this.route.params.subscribe( params => this.id=params.id );
   }catch(e){this.id=null;}
   }

@@ -15,7 +15,12 @@ import { RouterModule } from '@angular/router';
 describe('MemberDetailsComponent', () => {
   let component: MemberDetailsComponent;
   let fixture: ComponentFixture<MemberDetailsComponent>;
-
+  let member={id:null,firstName: "Syed",
+  lastName: "Irfan",
+  jobTitle: "Technician",
+  team: "F1",
+  status: "Active"};
+  let createdId=null;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MemberDetailsComponent],
@@ -53,4 +58,43 @@ describe('MemberDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create form with 5 controls', () => {
+    expect(component.memberForm.contains('firstName')).toBe(true);
+    expect(component.memberForm.contains('lastName')).toBe(true);
+    expect(component.memberForm.contains('jobTitle')).toBe(true);
+    expect(component.memberForm.contains('team')).toBe(true);
+    expect(component.memberForm.contains('status')).toBe(true);
+  });
+  it('should make firstName control required', () => {
+    let control=component.memberForm.get('firstName');
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+  });
+  it('should make lastName control required', () => {
+    let control=component.memberForm.get('lastName');
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+  });
+  it('should make jobTitle control required', () => {
+    let control=component.memberForm.get('jobTitle');
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+  });
+  it('should make team control required', () => {
+    let control=component.memberForm.get('team');
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+  });
+  it('should make status control required', () => {
+    let control=component.memberForm.get('status');
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+  });
+  it('should create a new Member', () => {
+
+    component.memberForm.setValue(member);
+    expect(component.memberForm.status).toEqual('VALID');
+    component.onSubmit();
+  });
+
 });
