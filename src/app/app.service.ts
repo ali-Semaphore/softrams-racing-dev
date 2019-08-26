@@ -39,6 +39,10 @@ export class AppService {
   updateMember(member: any): Observable<any> {
     return this.http.put<any>(`${this.api}/members/` + member.id, member);
   }
+  // delete a member by id
+  deleteMember(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.api}/members/` + id);
+  }
   // Return teams JSON Array
   getTeams() {
     return this.http.get(`${this.api}/teams`).pipe(catchError(this.handleError));

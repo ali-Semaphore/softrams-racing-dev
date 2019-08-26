@@ -22,5 +22,16 @@ export class MembersComponent implements OnInit {
 
   editMemberByID(id: number) {}
 
-  deleteMemberById(id: number) {}
+  // delete a Member useing REST DELETE method.
+  deleteMemberById(id: number) {
+    if (confirm('Do you want to Delete Member ?')) {
+      this.appService.deleteMember(id)
+        .subscribe( data => {
+          this.members = this.members.filter(u => u.id !== id);
+        })
+       } else {
+           return false;
+       }
+
+  }
 }
