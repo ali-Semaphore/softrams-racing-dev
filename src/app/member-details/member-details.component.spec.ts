@@ -4,7 +4,7 @@ import { MemberDetailsComponent } from './member-details.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +30,12 @@ describe('MemberDetailsComponent', () => {
         FormBuilder,
         {
           provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          }
+        },
+        {
+          provide: ActivatedRoute,
           useClass: class {
             navigate = jasmine.createSpy('navigate');
           }

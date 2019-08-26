@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid"  *ngIf="appService.username" >
   <button id="addMemberButton" class="btn btn-primary pull-right"  [routerLink]="['/members/new']">Add Member</button>
   <table class="table">
     <thead>
